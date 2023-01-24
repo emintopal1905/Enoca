@@ -17,9 +17,17 @@ public class CalisanController {
     public ResponseEntity<CalisanDto> add(@RequestBody CalisanDto calisanDto) {
         return ResponseEntity.ok(calisanService.add(calisanDto));
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CalisanDto> update(@RequestBody CalisanDto calisanDto,@PathVariable Long id) {
+        return ResponseEntity.ok(calisanService.update(calisanDto, id));
+    }
     @GetMapping("/getAll")
     public ResponseEntity<List<CalisanDto>> getAll() {
         return ResponseEntity.ok(calisanService.getAll());
+    }
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<CalisanDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(calisanService.getById(id));
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {

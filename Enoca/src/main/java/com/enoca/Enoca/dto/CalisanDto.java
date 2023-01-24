@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CalisanDto {
-
     private Long id;
     private String ad;
     private String soyad;

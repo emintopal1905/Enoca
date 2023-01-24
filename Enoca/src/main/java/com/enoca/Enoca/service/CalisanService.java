@@ -10,6 +10,8 @@ public interface CalisanService {
 
     CalisanDto add(CalisanDto calisanDto);
     void delete(Long id);
-    CalisanDto update(CalisanDto calisanDto);
+    CalisanDto update(CalisanDto calisanDto,Long id);
     List<CalisanDto> getAll();
+    CalisanDto getById(Long id);
+
 }

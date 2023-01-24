@@ -36,8 +36,22 @@ public class CalisanServiceImpl implements CalisanService {
     }
 
     @Override
-    public CalisanDto update(CalisanDto calisanDto) {
-        return null;
+    public CalisanDto update(CalisanDto calisanDto,Long id) {
+        Calisan calisan = calisanRepository.findById(id).orElseThrow();
+        calisan.setAd(calisanDto.getAd());
+        calisan.setSoyad(calisanDto.getSoyad());
+        calisan.setUnvan(calisanDto.getUnvan());
+        calisan.setSirket(calisanDto.getSirket());
+        calisanRepository.save(calisan);
+
+        CalisanDto result = new CalisanDto();
+        result.setId(calisan.getId());
+        result.setAd(calisan.getAd());
+        result.setSoyad(calisan.getSoyad());
+        result.setUnvan(calisan.getUnvan());
+        result.setSirket(calisan.getSirket());
+
+        return result;
     }
 
     @Override
@@ -55,5 +69,19 @@ public class CalisanServiceImpl implements CalisanService {
         });
 
         return calisanlarDto;
+    }
+
+    @Override
+    public CalisanDto getById(Long id) {
+        Calisan calisan = calisanRepository.findById(id).orElseThrow(() -> {
+            throw  new RuntimeException( " Data Not Found With This Id:"+ id);
+        });
+            CalisanDto calisanDto = new CalisanDto();
+            calisanDto.setId(calisan.getId());
+            calisanDto.setAd(calisan.getAd());
+            calisanDto.setSoyad(calisan.getSoyad());
+            calisanDto.setUnvan(calisan.getUnvan());
+            calisanDto.setSirket(calisan.getSirket());
+            return calisanDto;
     }
 }
